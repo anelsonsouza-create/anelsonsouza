@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anelson Souza | Advocacia & Consultoria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0b;--bg2:#111114;--bg3:#16161a;
+  --gold:#c9a84c;--gold-light:#e4c97e;--gold-dim:rgba(201,168,76,0.15);
+  --white:#f0ece4;--muted:#7a7870;--border:rgba(201,168,76,0.2);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* CURSOR */
+*{cursor:none}
+#cursor{position:fixed;top:0;left:0;z-index:9999;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;transition:width .3s,height .3s,background .3s;transform:translate(-50%,-50%)}
+#cursor.grow{width:36px;height:36px;background:var(--gold-dim);border:1px solid var(--gold)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 60px;background:rgba(10,10,11,0.97)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-wa{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--border);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:background .3s,color .3s}
+.nav-wa:hover{background:var(--gold);color:#0a0a0b}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 60px 60px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(201,168,76,.06),transparent 70%)}
+.hero-lines{position:absolute;right:0;top:0;bottom:0;width:45%;overflow:hidden;opacity:.06}
+.hero-lines::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 1px,transparent 1px,transparent 28px)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;margin-bottom:32px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:.85rem;line-height:1.9;color:var(--muted);max-width:460px;margin-bottom:48px}
+.hero-ctas{display:flex;gap:20px;align-items:center}
+.btn-primary{display:inline-flex;align-items:center;gap:12px;padding:16px 36px;background:var(--gold);color:#0a0a0b;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:none;transition:background .3s,transform .3s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .3s,border-color .3s}
+.btn-ghost:hover{color:var(--gold);border-color:var(--gold)}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:0 60px}
+.stat{padding:36px 0;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat:not(:first-child){padding-left:40px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:var(--gold)}
+.stat-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* SECTIONS */
+section{padding:100px 60px}
+.section-label{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.section-label::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:300;line-height:1.15;margin-bottom:20px}
+.section-title em{font-style:italic;color:var(--gold)}
+
+/* ABOUT */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-visual{aspect-ratio:3/4;max-height:520px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative}
+.about-corner{position:absolute;width:50px;height:50px}
+.about-corner.tl{top:-1px;left:-1px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.about-corner.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+.about-initials{font-family:'Cormorant Garamond',serif;font-size:8rem;font-weight:300;color:rgba(201,168,76,.12);display:flex;flex-direction:column;align-items:center;gap:8px}
+.about-initials small{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,168,76,.3);font-family:'Montserrat',sans-serif}
+.about-text p{font-size:.88rem;line-height:1.9;color:var(--muted);margin-bottom:18px}
+.about-text p strong{color:var(--white);font-weight:400}
+
+/* TABS */
+.tabs-wrap{background:var(--bg)}
+.tab-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:48px}
+.tab-btn{padding:16px 44px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .3s,border-color .3s}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.tab-intro{font-size:.85rem;line-height:1.8;color:var(--muted);max-width:680px;margin-bottom:44px}
+
+/* SERVICE CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.scard{background:var(--bg2);padding:40px 32px;border-top:2px solid transparent;transition:border-color .3s,background .3s}
+.scard:hover{border-top-color:var(--gold);background:var(--bg3)}
+.scard-icon{font-size:1.3rem;margin-bottom:18px;opacity:.8}
+.scard-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin-bottom:10px}
+.scard-desc{font-size:.78rem;line-height:1.8;color:var(--muted);margin-bottom:20px}
+
+/* EXPAND BUTTON */
+.expand-btn{background:none;border:none;border-bottom:1px solid var(--border);padding:0 0 2px;font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:6px;transition:border-color .3s}
+.expand-btn:hover{border-color:var(--gold)}
+.expand-btn .arr{display:inline-block;transition:transform .35s}
+.expand-btn.open .arr{transform:rotate(180deg)}
+
+/* EXPAND PANEL */
+.expand-panel{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease;opacity:0}
+.expand-panel.open{max-height:500px;opacity:1;padding-top:20px;margin-top:20px;border-top:1px solid var(--border)}
+.expand-panel ul{list-style:none;margin:8px 0 12px;display:flex;flex-direction:column;gap:6px}
+.expand-panel li{font-size:.78rem;line-height:1.7;color:var(--muted);padding-left:16px;position:relative}
+.expand-panel li::before{content:'▸';position:absolute;left:0;color:var(--gold)}
+.expand-panel strong{display:block;font-size:.82rem;font-weight:400;color:var(--white);margin-bottom:6px}
+.expand-panel em{font-style:normal;font-size:.78rem;color:var(--muted);line-height:1.7;display:block;margin-bottom:14px}
+.expand-cta{display:inline-flex;align-items:center;padding:10px 22px;background:var(--gold);color:#0a0a0b;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .3s}
+.expand-cta:hover{background:var(--gold-light)}
+
+/* TEMA */
+.tema{background:var(--bg2)}
+.tema-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
+.tema-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-dim);border:1px solid var(--border);padding:5px 14px;margin-bottom:20px;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}
+.tema-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;line-height:1.2;margin-bottom:12px}
+.tema-title em{font-style:italic;color:var(--gold)}
+.tema-meta{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.tema-body{font-size:.86rem;line-height:1.9;color:var(--muted)}
+.tema-body p{margin-bottom:14px}
+.tema-body strong{color:var(--white);font-weight:400}
+.tema-aside{padding-top:50px}
+.tema-aside-label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.tema-aside-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.tema-pontos{display:flex;flex-direction:column;gap:12px}
+.tema-ponto{display:flex;gap:14px;padding:18px;background:var(--bg3);border-left:2px solid var(--border);transition:border-color .3s}
+.tema-ponto:hover{border-left-color:var(--gold)}
+.tema-ponto-icon{color:var(--gold);font-size:.85rem;margin-top:2px}
+.tema-ponto-text{font-size:.78rem;line-height:1.7;color:var(--muted)}
+.tema-ponto-text strong{display:block;color:var(--white);font-weight:400;margin-bottom:3px}
+
+/* BLOG */
+.blog{background:var(--bg)}
+.blog-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px}
+.blog-link{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .3s,border-color .3s}
+.blog-link:hover{color:var(--gold);border-color:var(--gold)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.bcard{background:var(--bg2);transition:background .3s}
+.bcard:hover{background:var(--bg3)}
+.bcard-thumb{height:160px;background:var(--bg3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.bcard-thumb-icon{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:rgba(201,168,76,.15);font-weight:300}
+.bcard-body{padding:28px}
+.bcard-tag{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.bcard-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;line-height:1.3;margin-bottom:10px}
+.bcard-excerpt{font-size:.78rem;line-height:1.7;color:var(--muted);margin-bottom:20px}
+.bcard-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:16px}
+.bcard-date{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* BLOG EXPAND */
+.blog-expand-panel{max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .4s;opacity:0}
+.blog-expand-panel.open{max-height:600px;opacity:1;padding-top:18px;margin-top:16px;border-top:1px solid var(--border)}
+.blog-expand-panel p{font-size:.8rem;line-height:1.85;color:var(--muted);margin-bottom:12px}
+.blog-expand-panel strong{color:var(--white);font-weight:400}
+
+/* CONTATO */
+.contato{background:var(--bg2)}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.promises{margin-top:36px;display:flex;flex-direction:column;gap:20px}
+.promise{display:flex;gap:18px;align-items:flex-start}
+.promise-icon{width:34px;height:34px;min-width:34px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.8rem}
+.promise-text{font-size:.8rem;line-height:1.7;color:var(--muted)}
+.promise-text strong{display:block;color:var(--white);font-weight:400;margin-bottom:3px;font-size:.83rem}
+.wa-big{display:inline-flex;align-items:center;gap:10px;margin-top:32px;padding:15px 30px;background:#25d366;color:#fff;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .3s}
+.wa-big:hover{background:#1ebe5c}
+.form-card{background:var(--bg3);border:1px solid var(--border);padding:44px}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:6px}
+.form-sub{font-size:.73rem;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border);padding:12px 16px;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:300;outline:none;transition:border-color .3s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-group select{appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-submit{width:100%;padding:16px;background:var(--gold);color:#0a0a0b;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;border:none;margin-top:6px;transition:background .3s}
+.form-submit:hover{background:var(--gold-light)}
+#form-msg{font-size:.76rem;color:var(--gold);margin-top:12px;text-align:center;min-height:18px}
+
+/* DEPOIMENTOS */
+.depoimentos{background:var(--bg)}
+.dep-header{text-align:center;margin-bottom:60px}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.dep-card{background:var(--bg2);padding:40px 32px;border-left:2px solid transparent;transition:border-color .4s}
+.dep-card:hover{border-left-color:var(--gold)}
+.quote{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--gold);line-height:.6;margin-bottom:20px;opacity:.5}
+.dep-text{font-size:.83rem;line-height:1.8;color:var(--muted);margin-bottom:24px;font-style:italic}
+.dep-author strong{display:block;font-size:.8rem;font-weight:500;color:var(--white);margin-bottom:3px}
+.dep-author span{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+
+/* CTA FINAL */
+.cta-final{text-align:center;padding:120px 60px;background:var(--bg2);position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(201,168,76,.06),transparent 70%)}
+.cta-final-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.1;margin-bottom:20px;position:relative}
+.cta-final-title em{font-style:italic;color:var(--gold)}
+.cta-final-sub{font-size:.82rem;color:var(--muted);margin-bottom:44px;position:relative}
+.cta-divider{width:60px;height:1px;background:var(--gold);margin:0 auto 44px;position:relative}
+.cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* FOOTER */
+footer{padding:44px 60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.footer-copy{font-size:.63rem;letter-spacing:.1em;color:var(--muted)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-links,.nav-wa{display:none}
+  section{padding:70px 24px}
+  .hero{padding:90px 24px 60px}
+  .stats-bar{margin:0 24px;grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--border);padding-left:0!important}
+  .stat:last-child{border-bottom:none}
+  .about-grid,.contato-grid,.tema-grid{grid-template-columns:1fr;gap:44px}
+  .about-visual{max-height:280px}
+  .cards-grid,.blog-grid,.dep-grid{grid-template-columns:1fr}
+  .tab-btn{padding:14px 24px;font-size:.6rem}
+  .blog-header{flex-direction:column;align-items:flex-start;gap:14px}
+  footer{flex-direction:column;gap:10px;text-align:center}
+  .form-card{padding:26px 18px}
+  .cta-final{padding:80px 24px}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '5519799934761123');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=5519799934761123&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">Anelson Souza</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#tema">Artigo</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5592985536116" target="_blank" class="nav-wa">💬 WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Advocacia & Consultoria Patrimonial — Manaus/AM</div>
+    <h1 class="hero-title">Proteção <em>estratégica</em><br>para quem construiu<br>algo que vale.</h1>
+    <p class="hero-sub">Assessoria jurídica de alto nível para empresários e famílias que buscam preservar, estruturar e fazer crescer seu patrimônio com segurança e inteligência.</p>
+    <div class="hero-ctas">
+      <a href="#contato" class="btn-primary">Agendar Consulta</a>
+      <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Anos de experiência</span></div>
+  <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Clientes atendidos</span></div>
+  <div class="stat"><span class="stat-num">R$1B+</span><span class="stat-label">Em patrimônio estruturado</span></div>
+</div>
+
+<!-- SOBRE -->
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-initials">AS<small>Foto em breve</small></div>
+      <div class="about-corner tl"></div>
+      <div class="about-corner br"></div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">Sobre</div>
+      <h2 class="section-title">Uma visão jurídica<br>além do <em>óbvio</em></h2>
+      <p>Dr. <strong>Anelson Souza</strong> atua há mais de uma década na interseção entre Direito, estratégia empresarial e gestão patrimonial. Sua abordagem é fundamentada na escuta ativa, no rigor técnico e na visão de longo prazo.</p>
+      <p>Com experiência consolidada em <strong>planejamento sucessório, estruturação de holdings, consultoria empresarial e contencioso estratégico</strong>, oferece soluções sob medida para quem não pode se dar ao luxo de errar.</p>
+      <p>Seu trabalho é construir <strong>proteção jurídica</strong> sólida e inteligente — antes que os problemas apareçam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="tabs-wrap" id="servicos">
+  <div class="section-label reveal">Serviços</div>
+  <h2 class="section-title reveal">Atendimento <em>personalizado</em><br>para cada perfil de cliente</h2>
+  <p class="tab-intro reveal">Selecione seu perfil para conhecer as soluções disponíveis para você.</p>
+
+  <div class="tab-nav reveal">
+    <button class="tab-btn active" onclick="showTab('pj',this)">Para Empresas (PJ)</button>
+    <button class="tab-btn" onclick="showTab('pf',this)">Para Pessoas Físicas (PF)</button>
+  </div>
+
+  <!-- PJ -->
+  <div class="tab-pane active" id="pj">
+    <div class="cards-grid">
+
+      <div class="scard reveal">
+        <div class="scard-icon">⚖️</div>
+        <div class="scard-title">Consultoria Tributária</div>
+        <p class="scard-desc">Planejamento fiscal preventivo, recuperação de créditos e contencioso tributário estratégico.</p>
+        <button class="expand-btn" onclick="toggle('t1')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t1">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Planejamento tributário preventivo (IRPJ, CSLL, PIS, COFINS)</li>
+            <li>Recuperação de créditos tributários pagos a maior</li>
+            <li>Defesa em autuações fiscais federais, estaduais e municipais</li>
+            <li>Análise de impactos da Reforma Tributária (IBS/CBS)</li>
+            <li>Benefícios fiscais da Zona Franca de Manaus</li>
+          </ul>
+          <em>Indicado para empresas do Polo Industrial de Manaus, comércio, serviços e agronegócio.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">🏛️</div>
+        <div class="scard-title">Direito Societário</div>
+        <p class="scard-desc">Contratos sociais, acordos de sócios, fusões, aquisições e reorganizações societárias.</p>
+        <button class="expand-btn" onclick="toggle('t2')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t2">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Constituição e alteração de empresas (LTDA, S/A, SLU)</li>
+            <li>Elaboração e revisão de acordos de sócios</li>
+            <li>Fusões, aquisições e due diligence jurídica</li>
+            <li>Dissolução, liquidação e apuração de haveres</li>
+            <li>Exclusão de sócio e contencioso societário</li>
+          </ul>
+          <em>Indicado para empresários que desejam formalizar e proteger as relações entre sócios.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">👥</div>
+        <div class="scard-title">Trabalhista Empresarial</div>
+        <p class="scard-desc">Gestão do passivo trabalhista, compliance e defesa estratégica em reclamações.</p>
+        <button class="expand-btn" onclick="toggle('t3')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t3">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Defesa em reclamações trabalhistas (TRT e TST)</li>
+            <li>Auditoria e compliance trabalhista preventivo</li>
+            <li>Negociação de acordos coletivos (ACT/CCT)</li>
+            <li>Gestão de demissões individuais e coletivas</li>
+            <li>Análise de riscos com pejotização e terceirização</li>
+          </ul>
+          <em>Indicado para empresas com quadro de funcionários que desejam reduzir o passivo trabalhista.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">📋</div>
+        <div class="scard-title">Contratos & Compliance</div>
+        <p class="scard-desc">Elaboração, revisão e negociação de contratos empresariais complexos.</p>
+        <button class="expand-btn" onclick="toggle('t4')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t4">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Elaboração e revisão de contratos empresariais</li>
+            <li>Contratos de prestação de serviços e fornecimento</li>
+            <li>Contratos imobiliários e de locação comercial</li>
+            <li>Estruturação de programas de compliance jurídico</li>
+            <li>Análise de cláusulas abusivas e renegociação</li>
+          </ul>
+          <em>Indicado para empresas que celebram contratos de alto valor ou precisam de conformidade jurídica.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">🏗️</div>
+        <div class="scard-title">Estruturação de Holdings</div>
+        <p class="scard-desc">Criação de holdings operacionais e patrimoniais para empresários.</p>
+        <button class="expand-btn" onclick="toggle('t5')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t5">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Holding pura, mista e operacional</li>
+            <li>Integralização de imóveis e participações societárias</li>
+            <li>Planejamento tributário da holding</li>
+            <li>Proteção de ativos empresariais</li>
+            <li>Preparação para sucessão do negócio familiar</li>
+          </ul>
+          <em>Indicado para empresários com múltiplos negócios ou imóveis que desejam organizar seu patrimônio.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">🎯</div>
+        <div class="scard-title">Contencioso Estratégico</div>
+        <p class="scard-desc">Representação em litígios empresariais de alto impacto com foco em resultado.</p>
+        <button class="expand-btn" onclick="toggle('t6')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="t6">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Ações cíveis e empresariais de alto valor</li>
+            <li>Medidas cautelares e tutelas de urgência</li>
+            <li>Execuções e cobranças empresariais</li>
+            <li>Defesa em ações de responsabilidade de sócios</li>
+            <li>Mediação e arbitragem empresarial</li>
+          </ul>
+          <em>Indicado para empresas em disputas judiciais relevantes que exigem estratégia técnica apurada.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PF -->
+  <div class="tab-pane" id="pf">
+    <div class="cards-grid">
+
+      <div class="scard reveal">
+        <div class="scard-icon">🏠</div>
+        <div class="scard-title">Inventário & Partilha</div>
+        <p class="scard-desc">Condução de inventários judiciais e extrajudiciais com agilidade e cuidado.</p>
+        <button class="expand-btn" onclick="toggle('p1')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p1">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Inventário extrajudicial (cartório) e judicial</li>
+            <li>Partilha de bens móveis e imóveis</li>
+            <li>Cálculo e recolhimento de ITCMD</li>
+            <li>Planejamento tributário da partilha</li>
+            <li>Mediação de conflitos entre herdeiros</li>
+          </ul>
+          <em>Indicado para famílias que precisam regularizar a transferência de bens de forma organizada.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">🛡️</div>
+        <div class="scard-title">Holding Familiar</div>
+        <p class="scard-desc">Estruturação de holdings para proteção patrimonial e organização do legado familiar.</p>
+        <button class="expand-btn" onclick="toggle('p2')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p2">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Constituição de holding familiar ou patrimonial</li>
+            <li>Integralização de imóveis e outros bens</li>
+            <li>Doação de quotas com reserva de usufruto</li>
+            <li>Cláusulas de inalienabilidade e impenhorabilidade</li>
+            <li>Redução da carga de ITCMD na sucessão</li>
+          </ul>
+          <em>Indicado para pessoas físicas com patrimônio relevante que desejam proteger seus bens ainda em vida.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">📜</div>
+        <div class="scard-title">Planejamento Sucessório</div>
+        <p class="scard-desc">Testamentos, doações estruturadas e partilha em vida para garantir seu legado.</p>
+        <button class="expand-btn" onclick="toggle('p3')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p3">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Elaboração de testamento público e particular</li>
+            <li>Doação de bens com reserva de usufruto</li>
+            <li>Partilha em vida (antecipação da herança)</li>
+            <li>Pacto antenupcial e regime de bens</li>
+            <li>Planejamento para evitar conflitos entre herdeiros</li>
+          </ul>
+          <em>Indicado para quem deseja decidir agora o destino do patrimônio que construiu.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">💡</div>
+        <div class="scard-title">Teses Tributárias (PF)</div>
+        <p class="scard-desc">Análise e aplicação de teses favoráveis para pessoas físicas no IRPF.</p>
+        <button class="expand-btn" onclick="toggle('p4')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p4">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Análise de teses tributárias aplicáveis à PF</li>
+            <li>Revisão e retificação de declarações de IRPF</li>
+            <li>Exclusão de verbas indenizatórias da base do IR</li>
+            <li>Planejamento fiscal na venda de imóveis</li>
+            <li>Restituição de tributos pagos indevidamente</li>
+          </ul>
+          <em>Indicado para profissionais liberais e investidores que desejam pagar apenas o tributo legalmente devido.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">⚡</div>
+        <div class="scard-title">Direito de Família</div>
+        <p class="scard-desc">Divórcio, guarda, alimentos e questões familiares com discrição e competência.</p>
+        <button class="expand-btn" onclick="toggle('p5')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p5">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Divórcio consensual e litigioso</li>
+            <li>Guarda compartilhada e regulamentação de visitas</li>
+            <li>Ação de alimentos e revisão de alimentos</li>
+            <li>Reconhecimento e dissolução de união estável</li>
+            <li>Alienação parental e interdição</li>
+          </ul>
+          <em>Indicado para quem passa por transições familiares delicadas e precisa de orientação jurídica segura.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">📌</div>
+        <div class="scard-title">Cível & Juizados</div>
+        <p class="scard-desc">Representação em ações cíveis e Juizados Especiais — defesa dos seus direitos.</p>
+        <button class="expand-btn" onclick="toggle('p6')">Ver detalhes <span class="arr">▾</span></button>
+        <div class="expand-panel" id="p6">
+          <strong>O que abrange:</strong>
+          <ul>
+            <li>Ações de indenização por danos morais e materiais</li>
+            <li>Cobrança de dívidas e execução de contratos</li>
+            <li>Defesa do consumidor em Juizados Especiais</li>
+            <li>Ações possessórias e de usucapião</li>
+            <li>Revisão de contratos com cláusulas abusivas</li>
+          </ul>
+          <em>Indicado para pessoas físicas com direitos violados que precisam de defesa ágil e eficaz.</em>
+          <a href="#contato" class="expand-cta">Consultar →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEMA EM DESTAQUE -->
+<section class="tema" id="tema">
+  <div class="tema-grid">
+    <div class="reveal">
+      <div class="section-label">Tema em Destaque</div>
+      <div class="tema-badge">✦ Artigo informativo</div>
+      <h2 class="tema-title">Reforma Tributária e o impacto para <em>empresas e famílias</em> em 2025</h2>
+      <p class="tema-meta">Por Dr. Anelson Souza · Maio de 2025</p>
+      <div class="tema-body">
+        <p>A Reforma Tributária aprovada com a EC 132/2023 e regulamentada pela LC 214/2025 representa a maior transformação do sistema fiscal brasileiro em décadas. Para empresas e famílias com patrimônio relevante, compreender seus efeitos é fundamental.</p>
+        <p>A substituição de PIS, COFINS, IPI, ICMS e ISS pelo <strong>IBS, CBS e Imposto Seletivo</strong> altera profundamente a cadeia de créditos tributários e a lógica de planejamento fiscal.</p>
+        <p>Para holdings familiares e estruturas patrimoniais, o novo ambiente tributário traz tanto riscos quanto oportunidades. A reorganização societária preventiva pode ser o diferencial entre pagar mais ou menos impostos na nova ordem.</p>
+      </div>
+    </div>
+    <div class="tema-aside reveal">
+      <div class="tema-aside-label">O que você precisa saber</div>
+      <div class="tema-pontos">
+        <div class="tema-ponto"><div class="tema-ponto-icon">▸</div><div class="tema-ponto-text"><strong>Período de transição até 2033</strong>Convivência entre o sistema antigo e o novo cria oportunidades que se encerram progressivamente.</div></div>
+        <div class="tema-ponto"><div class="tema-ponto-icon">▸</div><div class="tema-ponto-text"><strong>Holdings e o novo ITCMD</strong>Mudanças nas regras tornam urgente a revisão de estruturas sucessórias existentes.</div></div>
+        <div class="tema-ponto"><div class="tema-ponto-icon">▸</div><div class="tema-ponto-text"><strong>Zona Franca de Manaus</strong>Benefícios fiscais da ZFM foram preservados, mas demandam atenção na interface com IBS e CBS.</div></div>
+        <div class="tema-ponto"><div class="tema-ponto-icon">▸</div><div class="tema-ponto-text"><strong>Ação imediata recomendada</strong>Empresas e famílias devem revisar suas estruturas jurídicas antes de 2026.</div></div>
+      </div>
+      <div style="margin-top:28px"><a href="#contato" class="btn-primary" style="display:inline-flex">Consultar sobre meu caso</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="blog-header">
+    <div>
+      <div class="section-label reveal">Blog Jurídico</div>
+      <h2 class="section-title reveal">Informação jurídica<br>de <em>qualidade</em></h2>
+    </div>
+    <a href="#blog" class="blog-link reveal">Ver todos os artigos →</a>
+  </div>
+  <div class="blog-grid">
+
+    <div class="bcard reveal">
+      <div class="bcard-thumb"><div class="bcard-thumb-icon">§</div></div>
+      <div class="bcard-body">
+        <div class="bcard-tag">Planejamento Patrimonial</div>
+        <div class="bcard-title">Holding familiar: quando vale a pena e por onde começar</div>
+        <p class="bcard-excerpt">Entenda o que é uma holding familiar, quais os requisitos mínimos e como ela pode proteger seus bens.</p>
+        <div class="bcard-footer">
+          <span class="bcard-date">Mai 2025</span>
+          <button class="expand-btn" onclick="toggle('b1')">Ler mais <span class="arr">▾</span></button>
+        </div>
+        <div class="blog-expand-panel" id="b1">
+          <p>A holding familiar é uma pessoa jurídica criada para <strong>concentrar e administrar o patrimônio de uma família</strong>. Sua principal vantagem é a possibilidade de transferir esse patrimônio aos herdeiros de forma organizada, econômica e com menor risco de conflitos.</p>
+          <p>Do ponto de vista tributário, a holding pode reduzir significativamente o <strong>ITCMD</strong> incidente sobre a transmissão de bens, substituindo o inventário por uma doação de quotas — com alíquota menor e base de cálculo mais favorável.</p>
+          <p>A análise de custo-benefício costuma ser favorável para patrimônios acima de <strong>R$ 500 mil</strong>, especialmente quando há imóveis ou negócios envolvidos.</p>
+          <a href="#contato" class="expand-cta" style="margin-top:14px">Falar com Dr. Anelson →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcard reveal">
+      <div class="bcard-thumb"><div class="bcard-thumb-icon">§</div></div>
+      <div class="bcard-body">
+        <div class="bcard-tag">Direito Tributário</div>
+        <div class="bcard-title">Como a Reforma Tributária afeta quem tem imóveis no Amazonas</div>
+        <p class="bcard-excerpt">Uma análise objetiva dos impactos da LC 214/2025 para proprietários e investidores do setor imobiliário.</p>
+        <div class="bcard-footer">
+          <span class="bcard-date">Abr 2025</span>
+          <button class="expand-btn" onclick="toggle('b2')">Ler mais <span class="arr">▾</span></button>
+        </div>
+        <div class="blog-expand-panel" id="b2">
+          <p>A LC 214/2025 substitui <strong>ICMS, ISS, PIS e COFINS</strong> pelo IBS e CBS. Para quem possui imóveis no Amazonas, o impacto é duplo: nas operações imobiliárias e na tributação dos rendimentos de aluguel.</p>
+          <p>Os <strong>benefícios fiscais da Zona Franca de Manaus</strong> foram preservados na reforma — mas a interface com os novos tributos exige planejamento cuidadoso.</p>
+          <p>O período de transição (2026-2033) cria janelas de oportunidade para reorganizar estruturas patrimoniais antes que o regime antigo se encerre.</p>
+          <a href="#contato" class="expand-cta" style="margin-top:14px">Falar com Dr. Anelson →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcard reveal">
+      <div class="bcard-thumb"><div class="bcard-thumb-icon">§</div></div>
+      <div class="bcard-body">
+        <div class="bcard-tag">Sucessão & Família</div>
+        <div class="bcard-title">Inventário extrajudicial: o que é, quando é possível e quanto custa</div>
+        <p class="bcard-excerpt">Muitas famílias desconhecem que o inventário pode ser feito em cartório, com mais rapidez e menor custo.</p>
+        <div class="bcard-footer">
+          <span class="bcard-date">Mar 2025</span>
+          <button class="expand-btn" onclick="toggle('b3')">Ler mais <span class="arr">▾</span></button>
+        </div>
+        <div class="blog-expand-panel" id="b3">
+          <p>O inventário extrajudicial, realizado em <strong>cartório de notas</strong>, foi criado pela Lei 11.441/2007. Em vez de meses ou anos de tramitação judicial, o procedimento pode ser concluído em <strong>poucas semanas</strong>.</p>
+          <p>É necessário que: todos os herdeiros sejam maiores e capazes; haja consenso sobre a partilha; não exista testamento; e as partes estejam representadas por advogado.</p>
+          <p>Os custos envolvem emolumentos cartoriais, honorários advocatícios e o <strong>ITCMD</strong>. No Amazonas, a alíquota varia de 2% a 4% dependendo do valor dos bens.</p>
+          <a href="#contato" class="expand-cta" style="margin-top:14px">Falar com Dr. Anelson →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="contato-grid">
+    <div class="reveal">
+      <div class="section-label">Contato</div>
+      <h2 class="section-title">Vamos conversar<br>sobre o seu <em>caso</em></h2>
+      <div class="promises">
+        <div class="promise"><div class="promise-icon">✦</div><div class="promise-text"><strong>Consulta Confidencial</strong>Todas as informações são protegidas pelo sigilo profissional absoluto.</div></div>
+        <div class="promise"><div class="promise-icon">✦</div><div class="promise-text"><strong>Resposta Ágil</strong>Retornamos o contato com objetividade e respeito ao seu tempo.</div></div>
+        <div class="promise"><div class="promise-icon">✦</div><div class="promise-text"><strong>Atendimento Personalizado</strong>Cada caso recebe atenção e estratégia exclusiva.</div></div>
+      </div>
+      <a href="https://wa.me/5592985536116?text=Olá%2C%20Dr.%20Anelson!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="wa-big">💬 Falar pelo WhatsApp</a>
+    </div>
+    <div class="form-card reveal">
+      <div class="form-title">Solicite uma consulta</div>
+      <p class="form-sub">Preencha o formulário e receba o contato via WhatsApp.</p>
+      <div class="form-group"><label>Nome completo</label><input type="text" id="f-nome" placeholder="Seu nome"></div>
+      <div class="form-group"><label>WhatsApp</label><input type="tel" id="f-tel" placeholder="(92) 00000-0000"></div>
+      <div class="form-group"><label>Perfil</label><select id="f-perfil"><option value="">Selecione</option><option>Pessoa Jurídica (Empresa)</option><option>Pessoa Física</option></select></div>
+      <div class="form-group"><label>Área de interesse</label><select id="f-area"><option value="">Selecione</option><option>Holding / Planejamento Patrimonial</option><option>Inventário / Sucessão</option><option>Tributário</option><option>Trabalhista Empresarial</option><option>Societário</option><option>Família / Divórcio</option><option>Cível / Juizados</option><option>Outro</option></select></div>
+      <div class="form-group"><label>Mensagem (opcional)</label><textarea id="f-msg" placeholder="Descreva brevemente sua situação..."></textarea></div>
+      <button class="form-submit" onclick="enviar()">Enviar pelo WhatsApp</button>
+      <div id="form-msg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="dep-header">
+    <div class="section-label reveal" style="justify-content:center">Depoimentos</div>
+    <h2 class="section-title reveal">O que dizem nossos <em>clientes</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal"><div class="quote">"</div><p class="dep-text">Dr. Anelson transformou a maneira como estruturo meu grupo de empresas. A holding familiar foi a decisão mais inteligente da minha vida empresarial.</p><div class="dep-author"><strong>Ricardo M.</strong><span>Empresário — Setor Industrial</span></div></div>
+    <div class="dep-card reveal"><div class="quote">"</div><p class="dep-text">Após anos sem um planejamento sucessório real, finalmente tenho a tranquilidade de saber que minha família e meu legado estão protegidos.</p><div class="dep-author"><strong>Família Carvalho</strong><span>Patrimônio Familiar</span></div></div>
+    <div class="dep-card reveal"><div class="quote">"</div><p class="dep-text">Em um contencioso complexo com impacto de milhões, a estratégia apresentada foi decisiva. Profissionalismo e técnica de altíssimo nível.</p><div class="dep-author"><strong>Alexandre T.</strong><span>CEO — Grupo de Varejo</span></div></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2 class="cta-final-title">Seu patrimônio merece<br>proteção <em>inteligente</em></h2>
+  <div class="cta-divider"></div>
+  <p class="cta-final-sub">Agende uma consulta confidencial e descubra como podemos proteger o que você construiu.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/5592985536116?text=Olá%2C%20Dr.%20Anelson!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="wa-big">💬 WhatsApp</a>
+    <a href="#contato" class="btn-primary">Preencher Formulário</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Anelson Souza</div>
+  <div class="footer-copy">© 2025 · Advocacia & Consultoria · OAB/AM · Todos os direitos reservados</div>
+</footer>
+
+<script>
+// Cursor
+var cur = document.getElementById('cursor');
+document.addEventListener('mousemove', function(e) {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.scard,.bcard,.dep-card').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { cur.classList.add('grow'); });
+  el.addEventListener('mouseleave', function() { cur.classList.remove('grow'); });
+});
+
+// Reveal on scroll
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+// Toggle expand — a função central e única
+function toggle(id) {
+  var panel = document.getElementById(id);
+  if (!panel) return;
+  var isOpen = panel.classList.contains('open');
+  // Fecha todos
+  document.querySelectorAll('.expand-panel, .blog-expand-panel').forEach(function(p) {
+    p.classList.remove('open');
+  });
+  document.querySelectorAll('.expand-btn').forEach(function(b) {
+    b.classList.remove('open');
+  });
+  // Abre o clicado se estava fechado
+  if (!isOpen) {
+    panel.classList.add('open');
+    // Marca o botão correspondente como open
+    document.querySelectorAll('.expand-btn').forEach(function(b) {
+      if (b.getAttribute('onclick') === "toggle('" + id + "')") {
+        b.classList.add('open');
+      }
+    });
+  }
+}
+
+// Tabs
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Formulário → WhatsApp
+function enviar() {
+  var nome = document.getElementById('f-nome').value.trim();
+  var tel = document.getElementById('f-tel').value.trim();
+  var perfil = document.getElementById('f-perfil').value;
+  var area = document.getElementById('f-area').value;
+  var msg = document.getElementById('f-msg').value.trim();
+  var out = document.getElementById('form-msg');
+  if (!nome || !tel || !perfil || !area) {
+    out.style.color = '#e07070';
+    out.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+    return;
+  }
+  var texto = 'Olá, Dr. Anelson! Me chamo *' + nome + '*.\n\n' +
+    '📋 *Perfil:* ' + perfil + '\n' +
+    '⚖ *Área de interesse:* ' + area + '\n' +
+    '📞 *Meu WhatsApp:* ' + tel +
+    (msg ? '\n\n💬 *Mensagem:* ' + msg : '') +
+    '\n\nGostaria de agendar uma consulta.';
+  window.open('https://wa.me/5592985536116?text=' + encodeURIComponent(texto), '_blank');
+  out.style.color = 'var(--gold)';
+  out.textContent = '✦ Abrindo WhatsApp...';
+  document.getElementById('f-nome').value = '';
+  document.getElementById('f-tel').value = '';
+  document.getElementById('f-msg').value = '';
+  document.getElementById('f-perfil').value = '';
+  document.getElementById('f-area').value = '';
+}
+</script>
+
+<footer style="background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.15);padding:24px 40px;text-align:center;">
+  <p style="font-family:'Montserrat',sans-serif;font-size:12px;color:#555;letter-spacing:0.05em;">
+    © 2026 Anelson Souza Advocacia &amp; Consultoria — OAB/AM
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/privacidade.html" style="color:#888;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='#888'">Política de Privacidade</a>
+  </p>
+</footer>
+
+</body>
+</html>
